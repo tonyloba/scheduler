@@ -17,9 +17,10 @@ return (
       <InterviewerListItem 
         key = {interviewer.id} //or index if it was passed  as 2nd parameter as index
         name = {interviewer.name} 
-        avatar = {interviewer.avatar}
-        selected = {interviewer.id === props.interviewer} // or interviewer.id === value  (from applcation.js)
-        setInterviewer = {() => props.setInterviewer(interviewer.id)} // setInterviewer={() => onChange(interviewer.id)}    (from applcation.js)
+        avatar = {interviewer.avatar}        
+        selected = {interviewer.id === props.value} // or selected = {interviewer.id === props.interviewer}  (from applcation.js)
+        //setInterviewer = {() => props.setInterviewer(interviewer.id)} // (from applcation.js)
+        onChange = {(event)=> props.onChange(interviewer.id)}
       />
   )
 })
