@@ -9,9 +9,19 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 
 
-export default function Appointment(props) {
 
+
+export default function Appointment(props) {
+ 
+  
   return(
-    <article className="appointment"></article>
+    <article className="appointment">
+    <Header time={props.time}></Header>
+    {props.interview  ? <Show student="Lydia Miller-Jones"/> : <Empty />}
+    
+    
+    </article>
+    
+
   )
 }
