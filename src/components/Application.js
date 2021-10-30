@@ -1,4 +1,5 @@
-import React , { useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import axios from "axios";
 import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment/index";
@@ -6,8 +7,30 @@ import Appointment from "./Appointment/index";
 
 
 export default function Application(props) {
-  const [day,setDay] = useState('Monday');
-  // console.log(day)
+  // const [day,setDay] = useState('Monday');
+  // const [days, setDays] = useState([]);
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  });
+
+  const setDay = (day) => {
+    setState({...state, day})
+  }
+  const setDays = (days) => {
+    setState({...state, days})
+  }
+
+
+  useEffect(()=> {
+    axios.get("api/days")
+    .then(response =>{
+      setDays([...response.data])
+      console.log(response.data);
+    })
+
+  },[])
 
   const schedule = appointments.map((appointment) => {
     
@@ -34,8 +57,8 @@ export default function Application(props) {
 
         <nav className="sidebar__menu">
         <DayList
-          days={days}
-          day={day} // or value={day} 
+          days={state.days}
+          day={state.day} // or value={day} 
           setDay={day => setDay(day)} // or onChange={setDay}
         />
 
