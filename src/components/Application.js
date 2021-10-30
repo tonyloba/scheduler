@@ -19,7 +19,8 @@ export default function Application(props) {
     setState({...state, day})
   }
   const setDays = (days) => {
-    setState({...state, days})
+    // setState({...state, days})
+    setState(prev => ({ ...prev, days }));
   }
 
 
@@ -37,7 +38,7 @@ export default function Application(props) {
     
     return (
       <Appointment
-      key={appointment.id}
+      key={appointment.id}s
       id={appointment.id}
       time={appointment.time}
       interview={appointment.interview}
