@@ -4,7 +4,19 @@ const getAppointmentsForDay = (state, day) => {
   return appointments ? appointments.map(appNum => state.appointments[appNum]) : [];
 };
 
-export { getAppointmentsForDay};
+const getInterview = (state, interview) => {
+  if (!interview) {
+    return null;
+  }
+  const selectInterview = {
+    student: interview.student,
+    interviewer: state.interviewers[interview.interviewer]
+  };
+  return selectInterview;
+};
+
+
+export { getAppointmentsForDay,getInterview};
 
 
 
