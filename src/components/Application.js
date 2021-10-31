@@ -3,6 +3,7 @@ import axios from "axios";
 import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment/index";
+import { getAppointmentsForDay} from "helpers/selectors";
 
 
 
@@ -18,27 +19,42 @@ export default function Application(props) {
   const setDay = (day) => {
     setState({...state, day})
   }
-  const setDays = (days) => {
-    // setState({...state, days})
-    setState(prev => ({ ...prev, days }));
-  }
+
+  //const setDays = (days) => {
+    //setState({...state, days})
+   // setState(prev => ({ ...prev, days }));
+  //}
 
 
   useEffect(()=> {
-    axios.get("api/days")
-    .then(response =>{
-      setDays([...response.data])
-      console.log(response.data);
+    Promise.all([
+      axios.get("api/days"),
+      axios.get("api/appointments")
+      // axios.get("api/interviewers")
+    ])
+    .then((all) => {
+      setState(prev => ({...prev, days: all[0].data,appointments: all[1].data }));
+      console.log(all);
+    //.then(response =>{
+      // setDays([...response.data])
+     // console.log(response.data);
     })
 
   },[])
 
-  const schedule = appointments.map((appointment) => {
+  // const appointments = getAppointmentsForDay(state, state.day);
+
+
+  //const dailyAppointments = [];
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  
+  const schedule = dailyAppointments.map((appointment) => {
     
     
     return (
       <Appointment
-      key={appointment.id}s
+      key={appointment.id}
       id={appointment.id}
       time={appointment.time}
       interview={appointment.interview}
@@ -71,7 +87,7 @@ export default function Application(props) {
 
       <section className="schedule">
           {schedule}       
-        <Appointment key="last" time="5pm" />
+        <Appointment id="last" time="5pm" />
       </section>
     </main>
   );
@@ -82,60 +98,60 @@ export default function Application(props) {
 
 
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+// const days = [
+//   {
+//     id: 1,
+//     name: "Monday",
+//     spots: 2,
+//   },
+//   {
+//     id: 2,
+//     name: "Tuesday",
+//     spots: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Wednesday",
+//     spots: 0,
+//   },
+// ];
 
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer:{
-        id: 3,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Archie Andrews",
-      interviewer:{
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
-  },
-  {
-    id: 5,
-    time: "4pm",
-  }
-];
+// const appointments = [
+//   {
+//     id: 1,
+//     time: "12pm",
+//   },
+//   {
+//     id: 2,
+//     time: "1pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer:{
+//         id: 3,
+//         name: "Sylvia Palmer",
+//         avatar: "https://i.imgur.com/LpaY82x.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 3,
+//     time: "2pm",
+//   },
+//   {
+//     id: 4,
+//     time: "3pm",
+//     interview: {
+//       student: "Archie Andrews",
+//       interviewer:{
+//         id: 4,
+//         name: "Cohana Roy",
+//         avatar: "https://i.imgur.com/FK8V841.jpg",
+//       }
+//     }
+//   },
+//   {
+//     id: 5,
+//     time: "4pm",
+//   }
+// ];
