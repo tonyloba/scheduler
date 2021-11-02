@@ -19,8 +19,7 @@ return (
         name = {interviewer.name} 
         avatar = {interviewer.avatar}        
         selected = {interviewer.id === props.value} // or selected = {interviewer.id === props.interviewer}  (from applcation.js)
-        //setInterviewer = {() => props.setInterviewer(interviewer.id)} // (from applcation.js)
-        onChange = {(event)=> props.onChange(interviewer.id)}
+        onChange = {(event)=> props.onChange(interviewer.id)} // or  // setInterviewer = {() => props.setInterviewer(interviewer.id)} // (from applcation.js)
       />
   )
 })

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InterviewerList from "../InterviewerList";
 import Button          from "../Button";
 
+
 //EDIT STORY:
 //    props.student        String
 //    props.interviewer    String(Number))   Database ID of the interviewer.
@@ -13,6 +14,8 @@ import Button          from "../Button";
 //    props.interviewers   Array:    List of interviewers available for the timeslot.
 //    setStudent:           Function
 //    setInterviewer:       Function
+
+
 
 
 
@@ -35,6 +38,11 @@ export default function Form(props) {
     reset()
     props.onCancel()
   }
+
+ const validate = () =>{
+   props.onSave(name,interviewer)
+ }
+
 
 
   return (
@@ -60,8 +68,8 @@ export default function Form(props) {
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
-        <Button danger onClick = {cancel}>Cancel</Button> {/* or  onClick={e => cancel()} */}
-        {/* <Button confirm {}>Save</Button> */}
+        <Button danger onClick = {cancel}>Cancel</Button> 
+        <Button confirm onClick ={validate} >Save</Button>
 
       </section>
     </section>
