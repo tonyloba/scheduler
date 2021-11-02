@@ -42,14 +42,14 @@ export default function useApplicationData() {
   },[])
 
 
-
    function bookInterview(id, interview) {
 
      const appointment = {...state.appointments[id], interview: {...interview}};
      const appointments = {...state.appointments, [id]: appointment};
     return axios.put(`/api/appointments/${id}`, {interview})
     .then (() => {
-        setState({...state, appointments});
+        // setState({...state, appointments});
+        setState({...state, appointments,days: updatedDaySpots(state.days, appointments)});
       })
     
   }
@@ -59,10 +59,36 @@ export default function useApplicationData() {
     const appointments = {...state.appointments, [id]: appointment};
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        setState({...state, appointments})
+        // setState({...state, appointments})
+        setState({...state, appointments,days: updatedDaySpots(state.days, appointments)})
       })
   }
 
-  return { state, setDay, bookInterview, cancelInterview };
+  
+///// COUNTING REMAINING SPOTS(Appointments) : /////////////
+
+const remainingDaySpots = (toDay, appointments) => {
+  let availSpots = 0;
+  
+  for (const item of toDay.appointments) {
+    if (!appointments[item].interview) {
+      availSpots++;
+    }
+  }
+  return availSpots;
+}
+
+const updatedDaySpots = (toDay, appointments) => {
+  const updatedDays = toDay.map((day) => ({
+    ...day,
+    spots: remainingDaySpots(day, appointments)
+  }))
+  // console.log("!!!!",updatedDays);
+  return updatedDays;
+}
+
+
+return { state, setDay, bookInterview, cancelInterview };
+
 
 }
