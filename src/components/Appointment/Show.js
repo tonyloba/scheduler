@@ -1,8 +1,7 @@
 import React from "react";
 const classNames = require('classnames');
 
-// Show component definition.
-//
+// Show component definition:
 //    props.student           String:   Student name.
 //    props.interviewerName   String:   Interviewer name.
 //    props.onEdit            Function: Edit button callback.
@@ -17,7 +16,7 @@ export default function Show(props) {
     <h2 className="text--regular">{props.student}</h2>
     <section className="interviewer">
       <h4 className="text--light">Interviewer</h4>
-      <h3 className="text--regular">{props.interviewer && props.interviewer.name}</h3>
+      <h3 className="text--regular">{props.interviewer.name}</h3>
     </section>
   </section>
   <section className="appointment__card-right">

@@ -11,12 +11,9 @@ import Button          from "../Button";
 //    props.onCancel       Function: Cancel button callback.
 
 // Create story
-//    props.interviewers   Array:    List of interviewers available for the timeslot.
+// props.interviewers   Array:List of interviewers available for the timeslot.
 //    setStudent:           Function
 //    setInterviewer:       Function
-
-
-
 
 
 export default function Form(props) {
@@ -24,11 +21,6 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   
 
-  // function resetOnCancel() {
-  //   setName("")
-  //   setInterviewer(null)
-  //   props.onCancel();
-  // }
   const reset = () => {
     setName("")
     setInterviewer(null)
@@ -39,10 +31,19 @@ export default function Form(props) {
     props.onCancel()
   }
 
- const validate = () =>{
-   props.onSave(name,interviewer)
- }
+//  const validate = () =>{
+//    props.onSave(name,interviewer)
+//  }
+  const validate =() => {
+    if (name === "") {
+    setError("Student name is empty");
+    return;
+      }
+      setError("");
+      props.onSave(name, interviewer);
+    }
 
+    const [error, setError] = useState("");
 
 
   return (
@@ -60,12 +61,16 @@ export default function Form(props) {
 
         />
       </form>
+      
+      <section className="appointment__validation">{error}</section>
+
       <InterviewerList 
        interviewers = {props.interviewers}
        value = {interviewer}
        onChange = {setInterviewer}
       />
     </section>
+
     <section className="appointment__card-right">
       <section className="appointment__actions">
         <Button danger onClick = {cancel}>Cancel</Button> 
