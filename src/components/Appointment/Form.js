@@ -19,7 +19,7 @@ import Button          from "../Button";
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-  
+  const [error, setError] = useState("");
 
   const reset = () => {
     setName("")
@@ -39,11 +39,16 @@ export default function Form(props) {
     setError("Student name is empty");
     return;
       }
+
+    if (interviewer === null) {
+        setError("Interviewer is not selected");
+        return;
+      }
       setError("");
       props.onSave(name, interviewer);
     }
 
-    const [error, setError] = useState("");
+    
 
 
   return (
@@ -58,7 +63,7 @@ export default function Form(props) {
           onChange = {event => setName(event.target.value)}
           type="text"
           placeholder="Enter Student Name"
-
+          data-testid="student-name-input"
         />
       </form>
       

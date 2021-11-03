@@ -70,8 +70,8 @@ export default function useApplicationData() {
 const remainingDaySpots = (toDay, appointments) => {
   let availSpots = 0;
   
-  for (const item of toDay.appointments) {
-    if (!appointments[item].interview) {
+  for (const id of toDay.appointments) {
+    if (!appointments[id].interview) {
       availSpots++;
     }
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem";
-
+import PropTypes from "prop-types";
 
 // InterviewerList component definition.
 //
@@ -31,3 +31,7 @@ return (
     </section>
   )
 }
+
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};

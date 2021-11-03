@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from "react";
-import axios from "axios";
 import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment/index";
