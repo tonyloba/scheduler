@@ -31,9 +31,7 @@ export default function Form(props) {
     props.onCancel()
   }
 
-//  const validate = () =>{
-//    props.onSave(name,interviewer)
-//  }
+
   const validate =() => {
     if (name === "") {
     setError("Student name is empty");
