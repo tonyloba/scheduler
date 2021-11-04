@@ -19,12 +19,20 @@ Cypress for unit, integration and end-to-end testing.
 
 ## Screenshots
 
-!["Main Interview Scheduler Interface"]()
-!["Choose day for appointment"]()
-!["Create appointment"]()
-!["Edit appointment"]()
-!["Delete appointment"]()
-!["Main Scheduler Interface"]()
+1. Main Interview Scheduler Interface
+!["Main Interview Scheduler Interface"](https://github.com/tonyloba/scheduler/blob/master/docs/main_page.png)
+
+2. Choose day for interview appointment
+!["Choose day for appointment"](https://github.com/tonyloba/scheduler/blob/master/docs/choose_day.png)
+
+3. Create interview appointment
+!["Create appointment"](https://github.com/tonyloba/scheduler/blob/master/docs/create_interview.png)
+
+4. Edit interview appointment
+!["Edit appointment"](https://github.com/tonyloba/scheduler/blob/master/docs/edit_interview.png)
+
+5. Delete interview appointment
+!["Delete appointment"](https://github.com/tonyloba/scheduler/blob/master/docs/delete_interview.png)
 
 ## Setup
 
