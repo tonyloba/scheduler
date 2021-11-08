@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "components/Application.scss";
 
+// Custom hook that manages application state  and performs network API requests.
+
 export default function useApplicationData() {
 
 
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {},
-    // interviewer: null,
+    appointments: {},  
     interviewers: {}
   });
 
@@ -17,7 +18,7 @@ export default function useApplicationData() {
     setState({...state, day})
   }
 
-
+ // Load data from the API server on initial page load  and save it in the state object:
 
   useEffect(()=> {
     Promise.all([
