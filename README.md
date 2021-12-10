@@ -50,7 +50,7 @@ Cypress for unit, integration and end-to-end testing.
 - PostgreSQL
 - Axios
   
-  Testing:
+  Testing Tools:
 - Jest(test)
 - StoryBook
 - Cypress
