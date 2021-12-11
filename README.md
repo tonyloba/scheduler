@@ -10,7 +10,7 @@ Data is persisted by the API server using a PostgreSQL database. The client appl
 
 React components were built in isolation using Storybook.
 
-For testing purposes were used : 
+For testing purposes were used: 
 
 Eslint-static test;
 Jest - for unit and integration tests  
