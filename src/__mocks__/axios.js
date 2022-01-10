@@ -1,3 +1,4 @@
+// mock data
 const fixtures = {
   days: [
     {
